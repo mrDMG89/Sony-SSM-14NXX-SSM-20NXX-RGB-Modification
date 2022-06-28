@@ -1,12 +1,12 @@
-# SSM-14NXX / SSM-20NXX RGB Modification
+# SSM-14NXX / SSM-20NXX RGB Модификация
 
-- [Overview](#overview)
-- [Who this guide is for](#who-this-guide-is-for)
-    - [PVM models](#pvm-models)
-- [Tools List](#tools-list)
-    - [Required](#required)
-    - [Highly Recommended](#highly-recommended)
-- [Parts List](#parts-list)
+- [Общие сведения](#общие-сведения)
+- [Для кого эта инструкция](#для-кого-эта-инструкция)
+    - [Модели PVM'ов](#модели-pvmов)
+- [Список инструментов](#список-инструментов)
+    - [Необходимы](#необходимы)
+    - [Рекомендуется иметь](#рекомендуется-иметь)
+- [Список запчастей](#список-запчастей)
 - [Step 1 - Dismantling the monitor](#step-1---dismantling-the-monitor)
     - [Step 1.1 - Removing the case](#step-11---removing-the-case)
     - [Step 1.2 - Detaching the Q board and releasing the Q board from the connector mounting plate](#step-12---detaching-the-q-board-and-releasing-the-q-board-from-the-connector-mounting-plate)
@@ -21,19 +21,13 @@
     - [Reproduction faceplate decals](#reproduction-faceplate-decals)
 - [References and acknowledgements](#references-and-acknowledgements)
 
-## Overview
+## Общие сведения
 Целью данного документа является объяснение процесса модификации монитора Sony SSM направленного на добавление поддержки RGB сигнала. Отмечу, что я ни разу не инженер-электронщик, и вся престравленная информация собрана из различных ресурсов в сети. Этот документ по большей части является моим личным справочным материалом, но надеюсь, он пригодится и другим. И хоть эту модификацию я выполнил самостоятельно, всё это не было бы возможно без помощи других других членов соощества.
-
-The purpose of this document is to explain how to modify a Sony SSM monitor to be able to support RGB. As a disclaimer, I am not an electronics engineer by any means, and all of the information contained within is collated from various sources online. This documentation is mostly for my own reference, but I do hope others find it useful too. While I have done this modification myself, I was standing on the shoulders of others the whole way.
 
 Имейте в виду, что есть несколько способов выполнить данную модификацию, и правильным вероятнее всего будет поставить *все* отсутствующие детали, но в этом документе отражён конкретный способ, который использовал лично я.
 
-Please note that there are actually multiple ways to achieve this mod, and that the more correct way is almost definitely to populate *all* missing components, but this documentation serves to outline the specific route that I took to achieve it.
-
 ## Для кого эта инструкция
-## Who this guide is for
 Эта инструкция для тех, у кого на руках есть один из нижеперечисленных мониторов, и вы хотите добавить в них поддержку RGB сигнала:
-This guide is specifically for you if you own any of the following monitors, and wish to modify them to accept RGB:
 
 |14" Модели|20" Модели|
 |----------|----------|
@@ -48,9 +42,7 @@ This guide is specifically for you if you own any of the following monitors, and
 |SSM-14N5U|SSM-20N5U|
 
 ### Модели PVM'ов
-### PVM models
 Эта инструкция так же будет полезна тем, у кого есть мониторы из таблицы ниже. Они построенны на том же шасси, как и вышеупомянутые 'SSM-XXXXX' мониторы.
-This guide may also be useful to you if you own any of the monitors from the table below, as they are also based on the same chassis as the aforementioned 'SSM-XXXXX' monitors.
 
 |14" Модели|20" Модели|Заметки|
 |----------|----------|-----|
@@ -72,37 +64,37 @@ This guide may also be useful to you if you own any of the monitors from the tab
 |PVM-14N6E|PVM-20N6E|This monitor already has RGB
 |PVM-14N6U|PVM-20N6U|This monitor already has RGB
 
-Modifying the PVM models is slightly different, and perhaps even easier depending on your perspective. The mod differences specific to PVM models that I am aware of are:
+Модификация PVM'ом немного отличается, и наверно выполнить её проще. Но тут как посмотреть. Отличия в модификации характерные именно для PVM'ом которые мне известны следующие:
 
-1. **Important** - Your PVM may or may not have a connector and wiring harness pre-installed at connector CN403 on the A board. If your monitor does not have this connector + harness, then you will need to route your own wires between the A and Q boards, but **be aware** that Sony made a mistake with the PCB labelling for this connector and it is reversed. On the PCB, the red pin is labelled as being closest to the front of the monitor, but the red pin is actually the one closest to the corner of the PCB; all other inputs are respectively reversed too. Therefore, from the corner of the PCB to the front, the pinouts are: R, GND, G, GND, B, GND, and Audio. See the images section below for a picture with the corrected pinout.
+1. **Важно** - В вашем PVM может уже быть распаян разъём CN403 на плате A, а также присутствовать жгут проводов для него. Если в вашем мониторе этот разъём не распаян и следовательно нет проводов для него, тогда вам придётся добавить эти провода самостоятельно для соединения плат A и Q, но **обратите внимание**, Sony допустила ошибку в распиновке этого разъёма на печатной плате и написала обозначения в обратном порядке. На плате контакт для сигнала красного исходя из распиновки находится ближе всего к передней части монитора, когда на самом деле контакт красного находится рядом с углом печатной платы. Все остальные контакты по аналогии расположны в обратном порядке. Следовательно, от угла печатной платы к передней части монитора распиновка следующая: R, GND, G, GND, B, GND и последний звуковой сигнал. Ниже в блоке с изображениями есть фотография с правильной распиновкой.See the images section below for a picture with the corrected pinout.
 
-2. You may not need to make the same jumper cuts on the A board as noted in the instructions below, as they may already be absent.
+2. Вам может не понадобиться убирать перемычки на плате A как указано ниже в инструкции. Её там может уже не быть.
 
-3. The BA7604N and MC14052BCP ICs may already be present on your model, which means you will not need to add them.
+3. Микросхемы BA7604N и MC14052BCP могут уже пристутствовать в вашей модели, следовательно, добавлять их не придётся.
 
-4. If your monitor already has a connector and wiring harness between CN402 on the A board and CN1302 on the Q board (which it likely will if your monitor has Line B), then you can route your RGB sync pin to the emitter pin at Q1312 which is equivalent to jumping a wire to ESYNC at CN1302. See the images section below for a picture showing where to make the connection.
+4. Если у вашего монитора уже распаян заъём CN402 на плате A и присутствует жгут проводов для него соединяющий c разъёмом CN1302 на плате Q (что очень вероятно, если у монитора есть линия B), тогда вы можете соединить контакт RGB EXT-SYNC IN с эмиттером (E) транзистора Q1312, что равносильно добавлению перемычки к контакту ESYNC разъёма CN1302. В блоке с изображениями показано, где нужно добавить эту перемычку.
 
-5. In the case of the PVM-14N5MDE, you may not need to add the 10 ohm resistor at R032, as it may already be present.
+5. В случае модели PVM-14N5MDE вам возможно не придётся добавлять резистор R032 на 10 Ом, так как он может там присутствоват.
 
-|Image|Notes|
+|Изображение|Заметки|
 |-----|-----|
-|<img src="https://i.imgur.com/FmWPSVE.jpg" width="300">| As per point 1 above, this image illustrates the corrected pinout for CN403. If you are wiring CN403 yourself because your PVM does not have a connector and wiring harness, keep this in mind. If you want to install your own pin header (as opposed to just soldering wires directly into the PCB holes), the type of header you need is one with a 2.54mm pitch.
-|<img src="https://i.imgur.com/OgMdGZ5.jpg" width="300">|As per point 4 above, if your PVM already has a connector between CN402 on the A board and CN1302 on the Q board, you can put a jumper wire between these two points instead of running a wire between A board and Q board which is necessary for models without aforementioned wiring harness between CN402 & CN1302.
+|<img src="https://i.imgur.com/FmWPSVE.jpg" width="300">|Как сказано в пункте 1 выше, здесь изображена верная распиновка для разъёма CN403. Если вы разводите разъём CN403 самостоятельно в виду его отсутствия в вашей модели PVM, держите в голове верную распиновку. Если вы хотите посадить правильный разъём на посадочное место вместо простого припаивания проводов на плату, используйте разъём с шагом ножек в 2,54мм.
+|<img src="https://i.imgur.com/OgMdGZ5.jpg" width="300">|Как сказано в пункте 4 выше, если в вашем PVM уже есть соединение можду разъёмами CN402 на плате A и  CN1302 на плате Q, вы можете припаять перемычку между этими двумя контактами. Для моделей у которых отсутствует вышеупомянутое соединение между разъёмами CN402 и CN1302 придётся прокладывать отдельный провод между платами A и Q.
 
-## Tools List
-### Required
-* Screwdriver
-* Soldering iron (I used a TS100)
-* Desoldering braid / Desoldering tool
-* Solder (I used 0.7mm)
-* Insulated wire
+## Список инструментов
+### Необходимы
+* Отвёртка
+* Паяльник (Я использовал TS100)
+* Оплётка для припоя / Оловоотсос
+* Припой (Я использовал диаметром 0,7мм)
+* Провода с изоляцией
 
-### Highly Recommended
-* Multimeter
-* Flux
-* Side cutters
+### Рекомендуется иметь
+* Мультиметр
+* Флюс
+* Кусачки
 
-## Parts List
+## Список запчастей
 |Component|Description|Qty|Links|
 |---------|-----------|---|-----|
 |Ceramic capacitor|Surface mount, non-polarised - 0.1µF|3|[Digi-Key - 445-1418-1-ND](https://www.digikey.com.au/product-detail/en/tdk-corporation/C2012X7R2A104K125AA/445-1418-1-ND/569084)|
